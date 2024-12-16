@@ -1,21 +1,13 @@
 require("dotenv").config();
 const TelegramBot = require("node-telegram-bot-api");
 const createKeyboard = require("./src/createKeyboard");
-const mime = require("mime-types");
-const Mysql = require("./src/DB/Mysql");
 const addPath = require("./src/addPath");
 const addFile = require("./src/addFile");
 const SelectFileOpration = require("./src/SelectFileOpration");
 const Bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: true });
+const data = require("./data.json");
 const stack = [];
 
-const db = new Mysql({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'TopkapiNotes',
-    connectionLimit: 10,
-});
 
 // إعداد أوامر البوت
 Bot.setMyCommands([
@@ -44,26 +36,26 @@ Bot.on("message", async (msg) => {
         if (text === "/start") {
             currentUser.path = [];
         }
-        await SelectFileOpration(db, Bot, msg, currentUser);
+        await SelectFileOpration(data, Bot, msg, currentUser);
     }
 
 
     if (text.startsWith("/newpath")) {
-        await addPath(db, Bot, msg);
+        await addPath(data, Bot, msg);
     }
 
 
     if (msg.document) {
-        await addFile(db, Bot, msg, msg.document);
+        await addFile(data, Bot, msg, msg.document);
         console.log(msg.document.file_id);
     }
 
     if (msg.video) {
-        await addFile(db, Bot, msg, msg.video);
+        await addFile(data, Bot, msg, msg.video);
     }
 
     if (msg.photo) {
-        await addFile(db, Bot, msg, msg.photo);
+        await addFile(data, Bot, msg, msg.photo);
     }
 
 
