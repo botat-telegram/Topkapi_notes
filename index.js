@@ -10,7 +10,6 @@ const SelectFileOpration = require("./src/SelectFileOpration");
 const Bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: true });
 const stack = [];
 
-
 const db = new Mysql({
     host: 'localhost',
     user: 'root',
