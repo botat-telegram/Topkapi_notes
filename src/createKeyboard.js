@@ -19,7 +19,7 @@ const createKeyboard = (btns = []) => {
 
     return {
         reply_markup: {
-            keyboard: newBtns,
+            keyboard: [...newBtns , ["back"]],
             resize_keyboard: true,  // Makes the keyboard smaller
             one_time_keyboard: true, // Hides the keyboard after a button is pressed
         }
