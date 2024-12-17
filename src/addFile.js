@@ -1,11 +1,8 @@
 const fs = require("fs/promises");
 const handleCaption = require("./handleCaption");
 
-<<<<<<< HEAD
-const addFile = async (data = {}, Bot, msg , msgType) => {
-=======
+
 const addFile = async (filePath, Bot, msg, msgType) => {
->>>>>>> 0bdcf1872f34c69e893982dd699b01c4282e42e5
     const chatId = msg.chat.id;
     const chatType = msg.chat.type;
     const caption = msg.caption;
@@ -14,20 +11,10 @@ const addFile = async (filePath, Bot, msg, msgType) => {
     const fileExtension = fileName.split(".").pop(); // Assuming file extension is part of the fileName
 
     try {
-<<<<<<< HEAD
-        if (chatType == "group" || chatType == "supergroup") {
-            const hanlde_caption = handleCaption(caption);
-            const handle_fileName = fileName.toLowerCase()
-            const head = data[hanlde_caption[0]]
-
-
-
-=======
         if (chatType === "group" || chatType === "supergroup") {
             if (!caption) {
                 throw new Error("Caption is required to determine the file path.");
             }
->>>>>>> 0bdcf1872f34c69e893982dd699b01c4282e42e5
 
             // Parse the caption into a path
             const pathSegments = handleCaption(caption);

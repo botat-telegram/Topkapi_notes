@@ -8,17 +8,11 @@ const SelectFileOpration = require("./src/SelectFileOpration");
 
 
 const Bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: true });
-<<<<<<< HEAD
-const data = require("./data.json");
-const stack = [];
 
-
-=======
 
 const stack = [];
 
 const filePath = "./data.json"
->>>>>>> 0bdcf1872f34c69e893982dd699b01c4282e42e5
 // إعداد أوامر البوت
 Bot.setMyCommands([
     { command: "/start", description: "Start the bot" }
@@ -61,10 +55,7 @@ Bot.on("message", async (msg) => {
             // إذا كانت المسار فارغًا أو يحتوي فقط على "start"
             Bot.sendMessage(chatId, "You are at the root, there is no previous path.");
         }
-<<<<<<< HEAD
         await SelectFileOpration(data, Bot, msg, currentUser);
-=======
->>>>>>> 0bdcf1872f34c69e893982dd699b01c4282e42e5
     }
 
     // Command to start fresh
@@ -79,35 +70,15 @@ Bot.on("message", async (msg) => {
 
     // إضافة مسار جديد
     if (text.startsWith("/newpath")) {
-<<<<<<< HEAD
-        await addPath(data, Bot, msg);
-=======
         await addPath(filePath, Bot, msg);
->>>>>>> 0bdcf1872f34c69e893982dd699b01c4282e42e5
     }
 
     // التعامل مع رفع الملفات
     if (msg.document) {
-<<<<<<< HEAD
-        await addFile(data, Bot, msg, msg.document);
-        console.log(msg.document.file_id);
-    }
-
-    if (msg.video) {
-        await addFile(data, Bot, msg, msg.video);
-    }
-
-    if (msg.photo) {
-        await addFile(data, Bot, msg, msg.photo);
-    }
-
-
-=======
         await addFile(filePath, Bot, msg, msg.document);
     } else if (msg.video) {
         await addFile(filePath, Bot, msg, msg.video);
     } else if (msg.photo) {
         await addFile(filePath, Bot, msg, msg.photo);
     }
->>>>>>> 0bdcf1872f34c69e893982dd699b01c4282e42e5
 });
