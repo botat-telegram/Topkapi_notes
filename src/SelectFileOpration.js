@@ -27,7 +27,7 @@ const SelectFileOperation = async (filePath, Bot, msg, currentUser) => {
 
         let getKeys;
 
-        if (currentData.file_type === "folder") {
+        if (currentData.file_type === "file") {
             Bot.sendDocument(chatId, currentData.file_id);
         } else {
             // If it's a folder, get the list of keys (subfolders or files)
