@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "programlama": {
         "file_type": "folder",
         "include": {
@@ -21,3 +22,6 @@
         }
     }
 }       
+=======
+}
+>>>>>>> 0bdcf1872f34c69e893982dd699b01c4282e42e5
