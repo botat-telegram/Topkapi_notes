@@ -203,5 +203,14 @@
         }
       }
     }
+  },
+  "test14": {
+    "file_type": "folder",
+    "content": {
+      "example14": {
+        "file_type": "folder",
+        "content": {}
+      }
+    }
   }
 }
