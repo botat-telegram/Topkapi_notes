@@ -1,0 +1,101 @@
+{
+  "root": {
+    "file_type": "folder",
+    "content": {}
+  },
+  "ntp": {
+    "file_type": "folder",
+    "content": {
+      "sinavlar": {
+        "file_type": "folder",
+        "content": {
+          "2020": {
+            "file_type": "folder",
+            "content": {}
+          }
+        }
+      },
+      "dersler": {
+        "file_type": "folder",
+        "content": {
+          "2021": {
+            "file_type": "folder",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "test": {
+    "file_type": "folder",
+    "content": {
+      "123": {
+        "file_type": "folder",
+        "content": {
+          "456": {
+            "file_type": "folder",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "matematik2": {
+    "file_type": "folder",
+    "content": {
+      "derslerr": {
+        "file_type": "folder",
+        "content": {}
+      },
+      "dersler": {
+        "file_type": "folder",
+        "content": {}
+      }
+    }
+  },
+  "newpath test": {
+    "file_type": "folder",
+    "content": {
+      "example": {
+        "file_type": "folder",
+        "content": {}
+      }
+    }
+  },
+  "test1": {
+    "file_type": "folder",
+    "content": {
+      "example1": {
+        "file_type": "folder",
+        "content": {}
+      }
+    }
+  },
+  "test2": {
+    "file_type": "folder",
+    "content": {
+      "example2": {
+        "file_type": "folder",
+        "content": {}
+      }
+    }
+  },
+  "test3": {
+    "file_type": "folder",
+    "content": {
+      "example3": {
+        "file_type": "folder",
+        "content": {}
+      }
+    }
+  },
+  "test4": {
+    "file_type": "folder",
+    "content": {
+      "example4": {
+        "file_type": "folder",
+        "content": {}
+      }
+    }
+  }
+}
