@@ -43,11 +43,17 @@ const addPath = async (filePath, Bot, msg) => {
         await fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), "utf-8");
 
         // Notify the user of success
-        await Bot.sendMessage(chatId, "Path successfully added to the file!");
+        await Bot.sendMessage(chatId, "Path successfully added to the file!", {
+            message_thread_id: msg.message_thread_id
+
+        });
 
     } catch (err) {
         console.error("addPath error:", err);
-        await Bot.sendMessage(chatId, `An error occurred: ${err.message}`);
+        await Bot.sendMessage(chatId, `An error occurred: ${err.message}`, {
+            message_thread_id: msg.message_thread_id
+
+        });
     }
 };
 

@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nodemon CreateLesson",
-    "start": "nodemon index"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +13,6 @@
     "dotenv": "^16.4.7",
     "mime-types": "^2.1.35",
     "mysql": "^2.18.1",
-    "node-telegram-bot-api": "^0.66.0",
-    "nodemon": "^3.1.9"
+    "node-telegram-bot-api": "^0.66.0"
   }
 }

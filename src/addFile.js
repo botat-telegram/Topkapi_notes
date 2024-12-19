@@ -58,7 +58,9 @@ const addFile = async (filePath, Bot, msg, msgType) => {
             await fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), "utf-8");
 
             // Notify the user of success
-            await Bot.sendMessage(chatId, `File "${fileName}" has been added successfully!`);
+            await Bot.sendMessage(chatId, `File "${fileName}" has been added successfully!`, {
+                message_thread_id: msg.message_thread_id
+            });
         } else {
             throw new Error("This action is only allowed in group or supergroup chats.");
         }
