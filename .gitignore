@@ -1,7 +1,10 @@
 node_modules
 
-
 *.rar
 *.zip
 
 *.json
+
+# مجلد النسخ الاحتياطية الخاصة
+/github_backups/*
+!github_backups/.gitkeep
