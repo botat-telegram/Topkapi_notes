@@ -39,5 +39,14 @@
         }
       }
     }
+  },
+  "matematik2": {
+    "file_type": "folder",
+    "content": {
+      "derslerr": {
+        "file_type": "folder",
+        "content": {}
+      }
+    }
   }
 }

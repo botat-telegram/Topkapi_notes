@@ -5,6 +5,6 @@ node_modules
 
 *.json
 
-# مجلد النسخ الاحتياطية الخاصة
-/github_backups/*
+# مجلد النسخ الاحتياطية
+# /github_backups/*  # تم تعليق هذا السطر للسماح برؤية النسخ الاحتياطية
 !github_backups/.gitkeep
