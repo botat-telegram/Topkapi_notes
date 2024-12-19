@@ -4,11 +4,15 @@ const createKeyboard = require("./src/createKeyboard");
 const addPath = require("./src/addPath");
 const addFile = require("./src/addFile");
 const SelectFileOpration = require("./src/SelectFileOpration");
+const backupToGithub = require("./src/backupToGithub");
 
-
+/*
+* أبوالهدى: تم تعديل التعامل مع الأوامر لمنع إرسال النص الكامل إلى SelectFileOperation
+* المشكلة: عند إرسال أمر /newpath، كان النص الكامل يُرسل إلى SelectFileOperation مما يسبب خطأ
+* الحل: التحقق من وجود الأمر قبل محاولة عرض المحتويات
+*/
 
 const Bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: true });
-
 
 const stack = [];
 
@@ -37,7 +41,7 @@ Bot.on("message", async (msg) => {
     }
     
     // إضافة النص إلى السجل
-    if (text && text !== "back" && !currentUser.path.includes(text)) {
+    if (text && text !== "back" && !text.startsWith("/") && !currentUser.path.includes(text)) {
         currentUser.path.push(text);
     }
 
@@ -55,16 +59,16 @@ Bot.on("message", async (msg) => {
             // إذا كانت المسار فارغًا أو يحتوي فقط على "start"
             Bot.sendMessage(chatId, "You are at the root, there is no previous path.");
         }
-        await SelectFileOpration(data, Bot, msg, currentUser);
     }
 
     // Command to start fresh
     if (text === "/start") {
         currentUser.path = [];
+        await SelectFileOpration(filePath, Bot, msg, currentUser);
     }
 
     // عملية تحديد الملفات
-    if (text && text !== "back") {
+    if (text && text !== "back" && !text.startsWith("/")) {
         await SelectFileOpration(filePath, Bot, msg, currentUser);
     }
 

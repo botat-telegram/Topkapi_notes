@@ -1,6 +1,6 @@
 const fs = require("fs/promises");
 const handleCaption = require("./handleCaption");
-
+const backupToGithub = require("./backupToGithub");
 
 const addFile = async (filePath, Bot, msg, msgType) => {
     const chatId = msg.chat.id;
@@ -56,6 +56,9 @@ const addFile = async (filePath, Bot, msg, msgType) => {
 
             // Save the updated JSON back to the file
             await fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), "utf-8");
+
+            // عمل نسخة احتياطية تلقائية
+            backupToGithub(filePath);
 
             // Notify the user of success
             await Bot.sendMessage(chatId, `File "${fileName}" has been added successfully!`, {

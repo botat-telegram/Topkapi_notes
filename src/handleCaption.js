@@ -2,33 +2,26 @@ const fs = require("fs/promises");
 const path = require("path");
 
 /*
-* أبوالهدى: تم تعديل دالة capitalize لتتعامل مع المجلدات التي تحتوي على أرقام فقط
-* المشكلة: كانت الدالة تحاول تحويل كل النصوص (بما فيها الأرقام) إلى حرف أول كبير وباقي الحروف صغيرة
-* الحل: إضافة فحص للتحقق من النص - إذا كان يحتوي على أرقام فقط نرجعه كما هو بدون تغيير
-* مثال: المجلد "2020" سيبقى "2020" بدلاً من محاولة تغيير تنسيقه
+* أبوالهدى: تم تعديل دالة handleCaption لتتعامل مع المسارات بشكل أفضل
+* المشكلة: المجلدات التي تحتوي على أرقام لا تضاف بشكل صحيح
+* الحل: تبسيط عملية معالجة المسار وإزالة التعديلات غير الضرورية على النص
 */
-const capitalize = (str) => {
-    // إذا كان النص يحتوي على أرقام فقط، أرجعه كما هو
-    if (/^\d+$/.test(str)) {
-        return str;
-    }
-    // وإلا قم بتكبير الحرف الأول
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-};
-
 const handleCaption = (fileCaption = "") => {
+    console.log("Original caption:", fileCaption);
+
     if (!fileCaption || typeof fileCaption !== "string") {
+        console.log("Invalid caption, returning empty array");
         return [];
     }
 
-    // Normalize the file caption to path-like format
-    const splitPath = fileCaption.replace(/[\\|>|-|(->)]/ig, "/").split("/");
+    // تقسيم المسار وتنظيفه مباشرة
+    const pathSegments = fileCaption
+        .split(/[\\/>|-]/)
+        .map(part => part.trim())
+        .filter(part => part.length > 0);
 
-    const filterPath = splitPath.filter(Boolean);
-
-    const result = filterPath.map((val) => capitalize(val));
-
-    return result;
+    console.log("Path segments:", pathSegments);
+    return pathSegments;
 };
 
-module.exports = handleCaption
+module.exports = handleCaption;
