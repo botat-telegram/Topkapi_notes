@@ -212,5 +212,19 @@
         "content": {}
       }
     }
+  },
+  "test15": {
+    "file_type": "folder",
+    "content": {
+      "example15": {
+        "file_type": "folder",
+        "content": {
+          "folder15": {
+            "file_type": "folder",
+            "content": {}
+          }
+        }
+      }
+    }
   }
 }
