@@ -1,0 +1,253 @@
+{
+  "timestamp": "2024-12-20T15:06:32.165Z",
+  "changes": {
+    "root": {
+      "file_type": "folder",
+      "content": {}
+    },
+    "ntp": {
+      "file_type": "folder",
+      "content": {
+        "sinavlar": {
+          "file_type": "folder",
+          "content": {
+            "2020": {
+              "file_type": "folder",
+              "content": {}
+            }
+          }
+        },
+        "dersler": {
+          "file_type": "folder",
+          "content": {
+            "2021": {
+              "file_type": "folder",
+              "content": {}
+            }
+          }
+        }
+      }
+    },
+    "test": {
+      "file_type": "folder",
+      "content": {
+        "123": {
+          "file_type": "folder",
+          "content": {
+            "456": {
+              "file_type": "folder",
+              "content": {}
+            }
+          }
+        }
+      }
+    },
+    "matematik2": {
+      "file_type": "folder",
+      "content": {
+        "derslerr": {
+          "file_type": "folder",
+          "content": {}
+        },
+        "dersler": {
+          "file_type": "folder",
+          "content": {}
+        }
+      }
+    },
+    "newpath test": {
+      "file_type": "folder",
+      "content": {
+        "example": {
+          "file_type": "folder",
+          "content": {}
+        }
+      }
+    },
+    "test1": {
+      "file_type": "folder",
+      "content": {
+        "example1": {
+          "file_type": "folder",
+          "content": {}
+        }
+      }
+    },
+    "test2": {
+      "file_type": "folder",
+      "content": {
+        "example2": {
+          "file_type": "folder",
+          "content": {}
+        }
+      }
+    },
+    "test3": {
+      "file_type": "folder",
+      "content": {
+        "example3": {
+          "file_type": "folder",
+          "content": {}
+        }
+      }
+    },
+    "test4": {
+      "file_type": "folder",
+      "content": {
+        "example4": {
+          "file_type": "folder",
+          "content": {}
+        }
+      }
+    },
+    "işletisistemleri1": {
+      "file_type": "folder",
+      "content": {
+        "2022": {
+          "file_type": "folder",
+          "content": {
+            "1dersler": {
+              "file_type": "folder",
+              "content": {}
+            }
+          }
+        }
+      }
+    },
+    "test5": {
+      "file_type": "folder",
+      "content": {
+        "example": {
+          "file_type": "folder",
+          "content": {}
+        }
+      }
+    },
+    "test7": {
+      "file_type": "folder",
+      "content": {
+        "example7": {
+          "file_type": "folder",
+          "content": {
+            "7": {
+              "file_type": "folder",
+              "content": {}
+            }
+          }
+        }
+      }
+    },
+    "test8": {
+      "file_type": "folder",
+      "content": {
+        "example8": {
+          "file_type": "folder",
+          "content": {}
+        }
+      }
+    },
+    "test_folder": {
+      "file_type": "folder",
+      "content": {
+        "test_subfolder": {
+          "file_type": "folder",
+          "content": {}
+        }
+      }
+    },
+    "test10": {
+      "file_type": "folder",
+      "content": {
+        "example10": {
+          "file_type": "folder",
+          "content": {
+            "10": {
+              "file_type": "folder",
+              "content": {}
+            }
+          }
+        }
+      }
+    },
+    "test11": {
+      "file_type": "folder",
+      "content": {
+        "example11": {
+          "file_type": "folder",
+          "content": {
+            "11": {
+              "file_type": "folder",
+              "content": {}
+            }
+          }
+        }
+      }
+    },
+    "test12": {
+      "file_type": "folder",
+      "content": {
+        "example12": {
+          "file_type": "folder",
+          "content": {}
+        }
+      }
+    },
+    "test13": {
+      "file_type": "folder",
+      "content": {
+        "example13": {
+          "file_type": "folder",
+          "content": {
+            "folder13": {
+              "file_type": "folder",
+              "content": {}
+            }
+          }
+        }
+      }
+    },
+    "test14": {
+      "file_type": "folder",
+      "content": {
+        "example14": {
+          "file_type": "folder",
+          "content": {
+            "windsurfusersetup-x64-1.0.7.exe": {
+              "file_type": "file",
+              "file_id": "BQACAgQAAx0CfZqZ-gACAz5nXKQ18LsFfXPsDAPaBbSc0eeHSgAC1hYAApkN2VJz2e6bN_KmrzYE",
+              "file_extension": "exe"
+            }
+          }
+        }
+      }
+    },
+    "test15": {
+      "file_type": "folder",
+      "content": {
+        "example15": {
+          "file_type": "folder",
+          "content": {
+            "folder15": {
+              "file_type": "folder",
+              "content": {}
+            }
+          }
+        }
+      }
+    },
+    "pro1": {
+      "file_type": "folder",
+      "content": {
+        "ders": {
+          "file_type": "folder",
+          "content": {
+            "2020": {
+              "file_type": "folder",
+              "content": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 const handleCaption = require("./handleCaption");
 const fs = require("fs/promises");
+const backupToGithub = require("./backupToGithub");
 
 /*
 * أبوالهدى: تم تعديل دالة addPath لتتعامل مع المسارات بشكل أفضل
@@ -53,14 +54,17 @@ const addPath = async (filePath, Bot, msg) => {
         await fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), "utf-8");
         console.log("Updated JSON data:", JSON.stringify(jsonData, null, 2));
 
+        // عمل نسخة احتياطية
+        backupToGithub(filePath);
+
         // إرسال رسالة نجاح
         await Bot.sendMessage(chatId, `Successfully created path: ${pathSegments.join("/")}`, {
             message_thread_id: msg.message_thread_id
         });
 
     } catch (err) {
-        console.error("addPath error:", err);
-        await Bot.sendMessage(chatId, `Error adding path: ${err.message}`, {
+        console.error("Error in addPath:", err);
+        await Bot.sendMessage(chatId, `Error creating path: ${err.message}`, {
             message_thread_id: msg.message_thread_id
         });
     }
