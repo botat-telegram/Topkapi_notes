@@ -12,6 +12,11 @@
           "yeh": {
             "file_type": "folder",
             "content": {}
+          },
+          "silmulated.py": {
+            "file_type": "file",
+            "file_id": "BQACAgQAAx0CfZqZ-gACBbtnazEUmBLGdVTy-ruSdI4tnDeenQACJBUAAk3TYFMW5d0yAu0SWDYE",
+            "file_extension": "py"
           }
         }
       }
