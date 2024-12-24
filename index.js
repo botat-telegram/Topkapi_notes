@@ -160,6 +160,11 @@ Bot.on("photo", async (msg) => {
 
 
 
-Bot.on("message" , (msg)=>{
-    saveBackUp(filePath)
-})
+
+const oneWeekInMillis = 7 * 24 * 60 * 60 * 1000; // Add 7 days in milliseconds
+
+
+// Set an interval to run every one week (in milliseconds)
+setInterval(() => {
+    saveBackUp(filePath);
+}, (1000 * 30)); 
