@@ -1,0 +1,20 @@
+{
+  "matematik": {
+    "file_type": "folder",
+    "content": {
+      "dersler": {
+        "file_type": "folder",
+        "content": {
+          "yyy": {
+            "file_type": "folder",
+            "content": {}
+          },
+          "yeh": {
+            "file_type": "folder",
+            "content": {}
+          }
+        }
+      }
+    }
+  }
+}
