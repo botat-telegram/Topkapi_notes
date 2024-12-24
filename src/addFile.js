@@ -1,23 +1,22 @@
 const fs = require("fs/promises");
 const handleCaption = require("./handleCaption");
-const backupToGithub = require("./backupToGithub");
 
-const addFile = async (filePath, Bot, msg, msgType) => {
-    const chatId = msg.chat.id;
+
+const addFile = async (
+    filePath = "",
+    msg,
+    msgContent = { file_name:"", file_id:"",file_caption :"" ,file_type:"",file_extention:""}) => {
+    
     const chatType = msg.chat.type;
-    const caption = msg.caption;
-    const fileId = msgType.file_id;
-    const fileName = msgType.file_name;
-    const fileExtension = fileName.split(".").pop(); // Assuming file extension is part of the fileName
-
+    const {file_name,file_id,file_caption,file_extention,file_type} = msgContent
     try {
         if (chatType === "group" || chatType === "supergroup") {
-            if (!caption) {
+            if (!file_caption) {
                 throw new Error("Caption is required to determine the file path.");
             }
 
             // Parse the caption into a path
-            const pathSegments = handleCaption(caption);
+            const pathSegments = handleCaption(file_caption);
             if (!pathSegments || !pathSegments.length) {
                 throw new Error("Invalid caption format for path.");
             }
@@ -42,34 +41,25 @@ const addFile = async (filePath, Bot, msg, msgType) => {
             }
 
             // Add the file to the final folder (check if it already exists)
-            const normalizedFileName = fileName.toLowerCase();
+            const normalizedFileName = file_name.toLowerCase();
             if (currentData[normalizedFileName]) {
-                throw new Error(`A file or folder named "${fileName}" already exists.`);
+                throw new Error(`A file or folder named "${file_name}" already exists.`);
             }
 
             // Add the new file to the content
             currentData[normalizedFileName] = {
-                file_type: "file",
-                file_id: fileId,
-                file_extension: fileExtension // Adding the file extension
+                file_type: file_type,
+                file_id: file_id,
+                file_extension: file_extention
             };
 
             // Save the updated JSON back to the file
             await fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), "utf-8");
-
-            // عمل نسخة احتياطية تلقائية
-            backupToGithub(filePath);
-
-            // Notify the user of success
-            await Bot.sendMessage(chatId, `File "${fileName}" has been added successfully!`, {
-                message_thread_id: msg.message_thread_id
-            });
         } else {
             throw new Error("This action is only allowed in group or supergroup chats.");
         }
     } catch (err) {
         console.error("addFile error:", err.message);
-        await Bot.sendMessage(chatId, `An error occurred: ${err.message}`);
     }
 };
 
