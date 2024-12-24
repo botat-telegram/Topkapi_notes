@@ -21,5 +21,9 @@
         }
       }
     }
+  },
+  "heheh": {
+    "file_type": "folder",
+    "content": {}
   }
 }
