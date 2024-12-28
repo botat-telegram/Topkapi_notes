@@ -1,7 +1,7 @@
 const fs = require("fs/promises");
 
 
-const handleCaption = (fileCaption = "") => {
+const HandleCaption = (fileCaption = "") => {
 
     if (!fileCaption || typeof fileCaption !== "string") {
         console.log("Invalid caption, returning empty array");
@@ -17,4 +17,4 @@ const handleCaption = (fileCaption = "") => {
     return pathSegments;
 };
 
-module.exports = handleCaption;
+module.exports = HandleCaption;

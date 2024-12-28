@@ -1,6 +1,4 @@
 const fs = require("fs/promises");
-const createKeyboard = require("./createKeyboard");
-const handleCaption = require("./handleCaption");
 
 const SelectOperation = async (filePath,  currentUser) => {
     let btnKeys;
@@ -20,12 +18,16 @@ const SelectOperation = async (filePath,  currentUser) => {
                 } else {
                     currentData = currentData[segment]; // If it's a file, use that directly
                 }
+            }else{
+                return "Unkown commands";
             }
         }
 
 
-        if (currentData.file_type === "file") {
-            btnKeys = currentData.file_id;
+        if (`${currentData.file_type}`.toLowerCase() === "image" ||
+            `${currentData.file_type}`.toLowerCase() === "video" ||
+            `${currentData.file_type}`.toLowerCase() === "document") {
+            btnKeys = {fileId : currentData.file_id , fileType : `${currentData.file_type}`.toLowerCase()};
         } else {
             // If it's a folder, get the list of keys (subfolders or files)
             btnKeys = Object.keys(currentData);

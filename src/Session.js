@@ -1,35 +1,33 @@
-// مصفوفة لتخزين حالة المستخدمين
-const stack = new Map();
+const createModel = () => ({
+    chatId: "",
+    userId: "",
+    path: [],
+    lastActivity: 0
+});
 
+class Session {
+    static stack = new Map();
 
-const getUserSession = async (chatId, userId) => {
-    try {
-        // البحث عن المستخدم الحالي
-        let currentUser = stack.get(chatId);
+    constructor() {}
 
-        if (!currentUser) {
-            // إنشاء مستخدم جديد
-            currentUser = {
-                chatId,
-                userId,
-                path: [],
-                lastActivity: Date.now()
-            };
-            stack.set(chatId, currentUser);
-        } else {
-            // تحديث معلومات المستخدم الحالي
-            currentUser.lastActivity = Date.now();
-            currentUser.isAdmin = false;
-            currentUser.userId = userId;
-            stack.set(chatId, currentUser);
+    getItem(key) {
+        if (!Session.stack.has(key)) {
+            throw new Error(`Key '${key}' not found in the session stack`);
         }
+        return Session.stack.get(key);
+    }
 
-        return currentUser;
-    } catch (error) {
-        console.error('Error in getUserSession:', error);
-        return null;
+    setItem(key, value = createModel()) {
+        Session.stack.set(key, value);
+    }
+
+    static removeItem(key) {
+        if (!Session.stack.has(key)) {
+            throw new Error(`Key '${key}' not found in the session stack`);
+        }
+        Session.stack.delete(key);
     }
 }
 
 
-module.exports = getUserSession
+module.exports = Session

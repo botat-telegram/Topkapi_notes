@@ -1,8 +1,8 @@
 const fs = require("fs/promises");
-const handleCaption = require("./handleCaption");
+const handleCaption = require("./HandleCaption");
 
 
-const addFile = async (
+const UploadFile = async (
     filePath = "",
     msg,
     msgContent = { file_name:"", file_id:"",file_caption :"" ,file_type:"",file_extention:""}) => {
@@ -63,4 +63,4 @@ const addFile = async (
     }
 };
 
-module.exports = addFile;
+module.exports = UploadFile;

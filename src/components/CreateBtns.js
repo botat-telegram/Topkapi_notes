@@ -1,4 +1,4 @@
-const createKeyboard = (btns = []) => {
+const CreateBtns = (btns = []) => {
     // Check if btns is an object and convert to an array of keys if true
     if (typeof btns === 'object' && !Array.isArray(btns)) {
         btns = Object.keys(btns);
@@ -26,4 +26,4 @@ const createKeyboard = (btns = []) => {
     };
 };
 
-module.exports = createKeyboard;
+module.exports = CreateBtns;
