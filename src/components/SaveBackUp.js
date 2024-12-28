@@ -1,12 +1,13 @@
 const fs = require("fs");
 const childProcess = require("child_process");
-const filePath = require("../../config/BotConfig").DataFilePath
 
 /**
  * Saves a backup of the given file by committing and pushing changes to a Git repository.
  * @param {string} filePath - The file or directory path to watch for changes.
+ * @param {number} time - The interval in milliseconds to check for changes.
 */
-const SaveBackUp = (time) => {
+
+const SaveBackUp = (filePath,time) => {
     setInterval(() =>{
         if (!fs.existsSync(filePath)) {
             console.error(`Error: The path "${filePath}" does not exist.`);
@@ -21,7 +22,7 @@ const SaveBackUp = (time) => {
             childProcess.execSync(`git add .`, { stdio: "inherit" });
     
             // Commit the changes
-            childProcess.execSync(`git commit -m "Auto backup: ${new Date().toISOString()}"`, {
+            childProcess.execSync(`git commit -m "uploaded By Code"`, {
                 stdio: "inherit",
             });
     

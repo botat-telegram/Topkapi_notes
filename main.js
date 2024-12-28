@@ -4,6 +4,7 @@ require('dotenv').config();
 const TelegramBot = require("node-telegram-bot-api");
 const commands = require("./src/commands/index");
 const SaveBackUp = require('./src/components/SaveBackUp');
+const filePath = require("./config/BotConfig").DataFilePath
 
 const Bot = new TelegramBot(require("./config/BotConfig").BotToken , { polling: true });
 const saveBackUpTime = 60 * 1000
@@ -28,4 +29,4 @@ Bot.onText(/^\/newpath/i , (msg) => commands.Newpath(Bot , msg));
 Bot.on("document", (msg) => commands.Document(Bot , msg));
 Bot.on("photo", (msg) => commands.Photo(Bot , msg));
 
-SaveBackUp(saveBackUpTime)
+SaveBackUp(filePath,saveBackUpTime)
