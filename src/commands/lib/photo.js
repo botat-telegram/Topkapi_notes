@@ -1,11 +1,7 @@
-const UploadFile = require("../components/UploadFile")
+const UploadFile = require("../../components/UploadFile")
 
 const Photo = async (bot , msg) => {
 
-    if(msg.chat.type != "group" || msg.chat.type != "superhroup") {
-        bot.sendMessage(msg.chat.id , "You can not upload any thing to this bot")
-        return;
-    }
 
     const chatID = msg.chat.id;
     const photos = msg.photo[msg.photo.length - 1];

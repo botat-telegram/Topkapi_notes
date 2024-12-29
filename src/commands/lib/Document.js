@@ -1,17 +1,14 @@
-const UploadFile = require("../components/UploadFile")
-
+const UploadFile = require("../../components/UploadFile")
+const mieTypes = require("mime-types")
+const filePath = require("../../../config/BotConfig").DataFilePath
 let Document = async (bot , msg) => {
 
-
-    if(msg.chat.type != "group" || msg.chat.type != "superhroup") {
-        bot.sendMessage(msg.chat.id , "You can not upload any thing to this bot")
-        return;
-    }
+    
 
     const chatID = msg.chat.id;
-    const fileName = msg.document.file_name;
+    const fileName = `${msg.document.file_name}`.split(".").shift();
     const fileId = msg.document.file_id;
-    const fileType = "file"
+    const fileType = mieTypes.lookup(msg.document.file_name).split("/")[0]
     const fileCaption = msg.caption;
     const fileExtention = fileName.split(".").pop()
 

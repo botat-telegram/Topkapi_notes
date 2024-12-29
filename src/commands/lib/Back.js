@@ -1,7 +1,7 @@
-const Session = require("../Session")
-const SelectOpration = require("../components/SelectOpration");
-const CreateBtns = require("../components/CreateBtns")
-const filePath = require("../../config/BotConfig").DataFilePath
+const Session = require("../../Session")
+const SelectOpration = require("../../components/SelectOpration");
+const CreateBtns = require("../../components/CreateBtns")
+const filePath = require("../../../config/BotConfig").DataFilePath
 
 
 const Back = async (bot , msg) => {

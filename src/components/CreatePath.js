@@ -1,11 +1,14 @@
+const path = require("path");
 const HandleCaption = require("./HandleCaption");
 const fs = require("fs/promises");
 
-
 const CreatePath = async (filePath, newpath) => {
     try {
-        const pathText = newpath.trim();
+        if (typeof filePath !== "string" || typeof newpath !== "string") {
+            throw new Error("Invalid input: filePath and newpath must be strings.");
+        }
 
+        const pathText = newpath.trim();
         const pathSegments = HandleCaption(pathText);
 
         if (!pathSegments || !pathSegments.length) {
@@ -17,27 +20,32 @@ const CreatePath = async (filePath, newpath) => {
 
         let currentLevel = jsonData;
         for (const segment of pathSegments) {
+            const folderKey = segment;
+
             console.log("Processing segment:", segment);
 
-            if (!currentLevel[segment]) {
-                currentLevel[segment] = {
+            if (!currentLevel[folderKey]) {
+                currentLevel[folderKey] = {
                     file_type: "folder",
+                    file_icon : 'folder',
                     content: {}
                 };
-                console.log(`Created folder: ${segment}`);
-            }
-
-            if (currentLevel[segment].file_type !== "folder") {
+                console.log(`Created folder: ${folderKey}`);
+            } else if (currentLevel[folderKey].file_type !== "folder") {
                 throw new Error(`Path segment "${segment}" exists but is not a folder.`);
             }
 
-            currentLevel = currentLevel[segment].content;
+            currentLevel = currentLevel[folderKey].content;
         }
 
         await fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), "utf-8");
 
+
+        console.log("Path successfully created!");
+
     } catch (err) {
-        return err;
+        console.error("Error creating path:", err.message);
+        throw err; // Re-throw the error after logging
     }
 };
 

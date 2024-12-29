@@ -13,13 +13,22 @@ const CreateBtns = (btns = []) => {
 
     // Group the buttons into pairs
     for (let i = 0; i < btns.length; i += 2) {
-        const btnValue = [btns[i], btns[i + 1] || ''].filter(Boolean); // Filter out empty strings or undefined
-        newBtns.push(btnValue);
+        if(`${btns[i]}`.startsWith("**") && `${btns[i]}`.endsWith("**")){
+            newBtns.push([`${btns[i]}`.replaceAll("*" , "")])
+            if(btns[i + 1]){
+                newBtns.push([`${btns[i + 1]}`.replaceAll("*" , "") || ''].filter(Boolean))
+            }
+        }else if (`${btns[i + 1]}`.startsWith("**") && `${btns[i + 1]}`.endsWith("**")){
+            newBtns.push([`${btns[i]}`.replaceAll("*" , "")])
+            newBtns.push([`${btns[i + 1]}`.replaceAll("*" , "")])
+        }else{
+            newBtns.push([btns[i], btns[i + 1] || ''].filter(Boolean));
+        }
     }
 
     return {
         reply_markup: {
-            keyboard: [...newBtns , ["back"]],
+            keyboard: [...newBtns , [`${require("../assets/icons").back} back`]],
             resize_keyboard: true,  // Makes the keyboard smaller
             one_time_keyboard: true, // Hides the keyboard after a button is pressed
         }

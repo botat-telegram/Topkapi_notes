@@ -19,7 +19,7 @@ const SaveBackUp = (filePath,time) => {
         try {
     
             // Add all changes
-            childProcess.execSync(`git add .`, { stdio: "inherit" });
+            childProcess.execSync(`git add ${filePath}`, { stdio: "inherit" });
     
             // Commit the changes
             childProcess.execSync(`git commit -m "uploaded By Code"`, {
