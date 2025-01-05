@@ -1,33 +1,32 @@
 const UploadFile = require("../../components/UploadFile")
-const mieTypes = require("mime-types")
+const mimeTypes = require("mime-types")
+const Session = require("../../Session")
 const filePath = require("../../../config/BotConfig").DataFilePath
+
 let Document = async (bot , msg) => {
 
+    if(msg.chat.type === "group" && msg.chat.type === "supergroup"){
+        bot.sendMessage(msg.chat.id , "You should be admin to upload files")
+    }
     
 
-    const chatID = msg.chat.id;
+    const userID = msg.from.id;
+    const getCurrentPath = await new Session(userID).getPath()
     const fileName = `${msg.document.file_name}`.split(".").shift();
     const fileId = msg.document.file_id;
-    const fileType = mieTypes.lookup(msg.document.file_name).split("/")[0]
-    const fileCaption = msg.caption;
-    const fileExtention = fileName.split(".").pop()
-
-    if (!fileCaption) {
-        bot.sendMessage(chatID, "write file path")
-        return;
-    }
-
+    const fileMime = mimeTypes.lookup(msg.document.file_name).split("/")
+    const paid = msg.caption == "paid" ? true : false;
 
     await UploadFile(
         filePath,
         msg,
         {
-            file_name: fileName,
-            file_id: fileId,
-            file_caption: fileCaption,
-            file_type: fileType,
-            file_extention: fileExtention
-        })
+            name: fileName,
+            id: fileId,
+            type: fileMime[0],
+            icon: fileMime[1],
+            paid : paid
+        },getCurrentPath)
 }
 
 

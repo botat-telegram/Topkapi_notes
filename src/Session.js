@@ -1,47 +1,72 @@
-const createModel = () => ({
-    chatId: "",
-    userId: "",
-    path: [],
-    lastActivity: Date.now(), // Setting initial lastActivity time to current time
-});
-
 class Session {
     static stack = new Map();
     static sessionExpiryTime = 30 * 60 * 1000; // 30 minutes in milliseconds
 
-    constructor() {}
+    constructor(key) {
+        this.key = key;
+    }
 
-    getItem(key) {
-        const session = Session.stack.get(key);
+    getItem() {
+        const session = Session.stack.get(this.key);
         // Check if the session has expired
-        if (Date.now() - session?.lastActivity > Session.sessionExpiryTime) {
-            this.removeItem(key); // Remove expired session
-            throw new Error(`Session '${key}' has expired`);
+        if (session && Date.now() - session.lastActivity > Session.sessionExpiryTime) {
+            this.removeItem(); // Remove expired session
+            throw new Error(`Session '${this.key}' has expired`);
         }
         return session;
     }
 
-    setItem(key, value = createModel()) {
-        if (Session.stack.has(key)) {
-            this.removeItem(key);
-        }
-
-        Session.stack.set(key, value);
+    setItem(value) {
+        value.lastActivity = Date.now();
+        Session.stack.set(this.key, value);
     }
 
-    removeItem(key) {
-        if (!Session.stack.has(key)) {
-            throw new Error(`Key '${key}' not found in the session stack`);
+    removeItem() {
+        if (!Session.stack.has(this.key)) {
+            throw new Error(`Key '${this.key}' not found in the session stack`);
         }
-        Session.stack.delete(key);
+        Session.stack.delete(this.key);
     }
 
-    updateLastActivity(key) {
-        if (!Session.stack.has(key)) {
-            throw new Error(`Key '${key}' not found in the session stack`);
+    getPath() {
+        const session = this.getItem();
+        return session?.path || [];
+    }
+
+    setCurrentFolder(folder) {
+        const session = this.getItem();
+        if (!session) {
+            throw new Error(`Session with key '${this.key}' does not exist or has expired`);
         }
-        const session = Session.stack.get(key);
+        session.currentFolder = folder;
+        this.setItem(session); // Persist updated session
+    }
+
+    getCurrentFolder() {
+        const session = this.getItem();
+        if (!session) {
+            throw new Error(`Session with key '${this.key}' does not exist or has expired`);
+        }
+        return session.currentFolder || null;
+    }
+
+    is_admin() {
+        const session = this.getItem();
+        return session?.admin;
+    }
+    
+    getEvent() {
+        const session = this.getItem();
+        return session?.event;
+    }
+
+    updateLastActivity() {
+        const session = this.getItem();
+        if (!session) {
+            throw new Error(`Key '${this.key}' not found in the session stack`);
+        }
         session.lastActivity = Date.now();
+        this.setItem(session); // Persist updated session
     }
 
     static clearExpiredSessions() {

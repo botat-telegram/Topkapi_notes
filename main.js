@@ -1,33 +1,60 @@
-// تحميل المتغيرات البيئية أولاً
 require('dotenv').config();
 
-const TelegramBot = require("node-telegram-bot-api");
+const Telegrambot = require("node-telegram-bot-api");
 const commands = require("./src/commands/index");
 const SaveBackUp = require('./src/components/SaveBackUp');
-const filePath = require("./config/BotConfig").DataFilePath
+const BotConfig = require("./config/BotConfig")
 const icons = require("./src/assets/icons")
-const Bot = new TelegramBot(require("./config/BotConfig").BotToken , { polling: true });
+const bot = new Telegrambot(BotConfig.BotToken, { polling: true });
 const saveBackUpTime = 7 * 24 * 60 * 60 * 1000
+
+bot.setMyCommands([
+    { command: "/start", description: "This command starts the bot" }
+]);
+
+bot.setMyCommands([
+    { command: "/add", description: "Add fodler" },
+    { command: "/addprivate", description: "Add private fodler" },
+    { command: "/edit", description: "Edit a file's name" },
+    { command: "/delete", description: "Delete a file or folder" },
+    { command: "/move", description: "Move a file to another directory" }
+
+], { scope: { type: "all_chat_administrators" } });
 
 
 // handle words
-Bot.onText(/^\/start/, (msg) => commands.Start(Bot , msg));
-Bot.onText(new RegExp(`^(${icons.back})\\s*back$`, "i"), (msg) => commands.Back(Bot , msg));
+bot.onText(/^\/start/, (msg) => commands.Start(bot, msg));
+bot.onText(new RegExp(`^(${icons.back})\\s*back$`, "i"), (msg) => commands.Back(bot, msg));
 
 
 
 // Group or SuperGroup commands
-Bot.onText(/^\/newpath/i , (msg) => commands.Newpath(Bot , msg));
-Bot.onText(/^edit/i , (msg) => commands.Edit(Bot , msg))
+bot.onText(/^\/add(private)?/i, (msg) => commands.Add(bot, msg));
+bot.onText(/^\/edit/i, (msg) => commands.Edit(bot, msg))
 
-// Accept any thing without special commands
-const anyWord = /^(?!\/(?:start|edit|newpath)$)(?!.*\bback\b)(?!.*\bedit\b).*$/i;
-Bot.onText(anyWord, (msg) => commands.Text(Bot , msg));
+
 
 
 // handle upload files images etc.
-Bot.on("document", (msg) => commands.Document(Bot , msg));
-Bot.on("photo", (msg) => commands.Photo(Bot , msg));
+bot.on("document", (msg) => {
+    if (msg.chat.type === "group" || msg.chat.type === "supergroup") {
+        commands.Document(bot, msg)
+    }else{
+        bot.sendMessage(msg.chat.id, "You should be admin to upload files");
+        return;
+    }
+});
+bot.on("photo", (msg) => {
+    if (msg.chat.type === "group" || msg.chat.type === "supergroup") {
+        commands.Photo(bot, msg)
+    }else{
+        bot.sendMessage(msg.chat.id, "You should be admin to upload files");
+        return;
+    }
+});
 
 
-SaveBackUp(filePath,saveBackUpTime)
+// Accept any thing without special commands
+const anyWord = /^(?!\/(?:start|edit|add))(?!.*\bback\b).*$/i;
+bot.onText(anyWord, (msg) => commands.Text(bot, msg));
+SaveBackUp(BotConfig.DataFilePath, saveBackUpTime)

@@ -3,7 +3,7 @@ const Start = require("./lib/Start")
 const Text = require("./lib/Text")
 
 // Group or SuperGroup commands
-const Newpath = require("./lib/Newpath")
+const Add = require("./lib/Add")
 const Edit  = require("./lib/Edit")
 // uplaod Files (Document , Images , etc..)
 const Document = require("./lib/Document")
@@ -16,6 +16,6 @@ module.exports = {
     Back,
     Document,
     Photo,
-    Newpath,
+    Add,
     Edit
 }

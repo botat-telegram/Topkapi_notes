@@ -1,34 +1,34 @@
 const Session = require("../../Session")
-const SelectOpration = require("../../components/SelectOpration");
-const CreateBtns = require("../../components/CreateBtns");
-const icons = require("../../assets/icons");
-const filePath = require("../../../config/BotConfig").DataFilePath
+const SelectOpration = require("../../components/SelectOperation");
+const CreateBtns = require("../../components/Buttons");
+const admins = require("../../Admin")
 
 const Start = async (bot , msg) => {
     const chatID = msg.chat.id;
     const userID = msg.from.id;
 
     try {
-        const session = await new Session();
+        const session = await new Session(userID);
 
         const userData = {
             chatId : chatID,
             userId : userID,
             path : [],
+            currentFolder: "",
+            admin : admins.includes(userID) ? true : false,
+            event : "",
             lastActivity: Date.now()
         }
         
-        session.setItem(chatID , userData)
+        session.setItem(userData)
 
 
-        const getBtns = await SelectOpration(filePath, userData)
+        const getBtns = await SelectOpration(userData.path , userData.admin)
 
         if (Array.isArray(getBtns)) {
             if(msg.chat.type === "group" || msg.chat.type === "supergroup"){
 
-                bot.sendMessage(chatID, "Select folder : ", CreateBtns([...getBtns , `**${icons.delete} Delete**` , `**${icons.edit} Edit`,`**${icons.move} Move**`]) , {
-                    message_thread_id : msg.message_thread_id
-                })
+                bot.sendMessage(chatID, "Select folder : ", CreateBtns(getBtns))
             }else{
                 bot.sendMessage(chatID, "Select folder : ", CreateBtns(getBtns))
             }

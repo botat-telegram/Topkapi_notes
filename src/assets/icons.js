@@ -2,11 +2,12 @@ const icons = {
     folder : "📂",
     image : "🖼",
     video : "🎞",
-    file : "📄",
+    application : "📄",
     back : "🔙",
     delete : "🗑",
     edit : "📝",
     move : "",
+
     default : "📄"
 }
 

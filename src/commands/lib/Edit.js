@@ -1,29 +1,33 @@
-const CreateInlineBtns = require("../../components/CreateInlineBtns")
-const SelectOperation = require("../../components/SelectOpration")
+const SelectOperation = require("../../components/SelectOperation")
 const Session = require("../../Session")
-const filepath = require("../../../config/BotConfig").DataFilePath
+
 
 const Edit = async (bot, msg) => {
+
+    const chatId = msg.chat.id
+    const userID = msg.from.id
+
     try {
-        const session = new Session().getItem(msg.chat.id);
-        if (!session) throw new Error("Session not found");
-    
-        const getOperation = await SelectOperation(filepath, session);
-        console.log("getOperation:", getOperation);
+        const session = new Session(userID)
+
+        const getCurrentFolder = session.getCurrentFolder()
+
+        const getPath = session.getPath();
+
+        if (!getPath) throw new Error("Session not found");
+
+
+        const getOperation = await SelectOperation(getPath);
     
         if (!getOperation || getOperation.length === 0) {
-            bot.sendMessage(msg.chat.id, "No operations available to edit.");
+            bot.sendMessage(chatId, "No operations available to edit.");
             return;
         }
     
-        const getInlineBtns = CreateInlineBtns(getOperation);
-        console.log("Inline Buttons:", getInlineBtns);
     
-        bot.sendMessage(msg.chat.id, "Select one of these to Edit: ", {
-            reply_markup: getInlineBtns,
-        });
+        bot.sendMessage(chatId, "Write new Name for : " + getCurrentFolder);
 
-        
+        session.setEvent("edit")
     } catch (error) {
         console.error("Error in Edit function:", error);
         bot.sendMessage(msg.chat.id, "An error occurred while processing your request.");
