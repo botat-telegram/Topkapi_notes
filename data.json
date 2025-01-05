@@ -1,1 +1,143 @@
-{}
+{
+  "yazılım mühendisliği": {
+    "type": "folder",
+    "icon": "folder",
+    "accessibility": "public",
+    "content": {
+      "1.dönem": {
+        "type": "folder",
+        "icon": "folder",
+        "accessibility": "public",
+        "content": {
+          "fizik": {
+            "type": "folder",
+            "icon": "folder",
+            "accessibility": "public",
+            "content": {
+              "lessons": {
+                "type": "folder",
+                "icon": "folder",
+                "accessibility": "public",
+                "content": {}
+              },
+              "practices": {
+                "type": "folder",
+                "icon": "folder",
+                "accessibility": "public",
+                "content": {}
+              },
+              "homeworks": {
+                "type": "folder",
+                "icon": "folder",
+                "accessibility": "public",
+                "content": {}
+              },
+              "videos": {
+                "type": "folder",
+                "icon": "folder",
+                "accessibility": "private",
+                "content": {}
+              },
+              "exam": {
+                "type": "folder",
+                "icon": "folder",
+                "accessibility": "public",
+                "content": {}
+              }
+            }
+          },
+          "programlama 1": {
+            "type": "folder",
+            "icon": "folder",
+            "accessibility": "public",
+            "content": {}
+          },
+          "bilgisayar bilimine giriş": {
+            "type": "folder",
+            "icon": "folder",
+            "accessibility": "public",
+            "content": {}
+          },
+          "inkılap": {
+            "type": "folder",
+            "icon": "folder",
+            "accessibility": "public",
+            "content": {}
+          },
+          "inglizce": {
+            "type": "folder",
+            "icon": "folder",
+            "accessibility": "public",
+            "content": {}
+          },
+          "matematik": {
+            "type": "folder",
+            "icon": "folder",
+            "accessibility": "public",
+            "content": {}
+          }
+        }
+      },
+      "2.dönem": {
+        "type": "folder",
+        "icon": "folder",
+        "accessibility": "public",
+        "content": {}
+      },
+      "3.dönem": {
+        "type": "folder",
+        "icon": "folder",
+        "accessibility": "public",
+        "content": {}
+      },
+      "4.dönem": {
+        "type": "folder",
+        "icon": "folder",
+        "accessibility": "public",
+        "content": {}
+      },
+      "5.dönem": {
+        "type": "folder",
+        "icon": "folder",
+        "accessibility": "public",
+        "content": {}
+      },
+      "6.dönem": {
+        "type": "folder",
+        "icon": "folder",
+        "accessibility": "public",
+        "content": {}
+      },
+      "7.dönem": {
+        "type": "folder",
+        "icon": "folder",
+        "accessibility": "public",
+        "content": {}
+      },
+      "8.dönem": {
+        "type": "folder",
+        "icon": "folder",
+        "accessibility": "public",
+        "content": {}
+      }
+    }
+  },
+  "bilgisayar mühendisliği": {
+    "type": "folder",
+    "icon": "folder",
+    "accessibility": "public",
+    "content": {}
+  },
+  "yazılım mühendisliği (EN)": {
+    "type": "folder",
+    "icon": "folder",
+    "accessibility": "public",
+    "content": {}
+  },
+  "bilgisayar mühendisliği (EN)": {
+    "type": "folder",
+    "icon": "folder",
+    "accessibility": "public",
+    "content": {}
+  }
+}
